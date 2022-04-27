@@ -6,8 +6,6 @@ endif
 
 "autocmd Vimenter * NERDTree
 
-au BufWrite * :Autoformat<CR>
-
 call plug#begin()
 Plug 'junegunn/vim-easy-align'
 Plug 'mhinz/vim-startify' "adds vim start menu
@@ -21,14 +19,17 @@ Plug 'sjl/badwolf' "badwolf colorscheme
 Plug 'tabnine/YouCompleteMe' "tabnine autocompletion
 Plug 'chiel92/vim-autoformat' "formats on save
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "fuzzy finder
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' "fuzzy finder
 Plug 'voldikss/vim-floaterm' "adds floating terminal
+Plug 'itchyny/vim-cursorword' "underlines the current word the cursor is under
 call plug#end()
+
+au BufWrite * :Autoformat<CR> "autoformats on any save
 
 let g:rainbow_active=1
 let g:badwolf_tabline=0
-let g:python3_host_prog="/bin/python3"
-let g:python2_host_prog="/bin/python2"
+let g:python3_host_prog="/bin/python3" "python3 path
+let g:python2_host_prog="/bin/python2" "python2 path
 let g:NERDCreateDefaultMappings=1
 let g:floaterm_keymap_new='<leader>ft'
 let g:floaterm_keymap_toggle='<leader>t'
@@ -47,12 +48,12 @@ set cursorcolumn "adds visible vertical line on cursor
 set wrap "lets text wrap at limit
 set textwidth=80 "sets text limit to 80 characters
 set linebreak "wont wrap text in middle of a word
-set ruler
+set ruler "shows cursor position in airline
 set scrolloff=10 "shows + or - 10 lines while scrolling
 
 set nocompatible
-set noswapfile
-set nobackup
+set noswapfile "do not create a swap file
+set nobackup "do not create a backup file
 
 set hidden "allows terminals and windows to not be shown without closing them
 set cmdheight=3 "sets command bar height to 3 to make it bigger
@@ -61,12 +62,12 @@ set wildmenu
 
 set autoindent "sets indent to auto
 set smartindent "sets indent to detect filetype
-set tabstop=4
+set tabstop=4 "sets tab to make 4 spaces
 set shiftwidth=4
-set expandtab
+set expandtab "tabs treated like single backspace
 
 set hlsearch "highlights searches
-set incsearch
+set incsearch "sets incremental search
 set ignorecase "ignores case sensitivity while searching
 
 set showmatch "shows matching pairs
@@ -80,10 +81,15 @@ set background=dark "sets background to dark
 "<leader> = \
 
 inoremap jj <esc>
+"use jj to leave insert mode
 inoremap <C-s> <esc>:w<CR>i
+"use ctrl-s to save in insert mode and return to insert mode
 
 nnoremap <C-s> :w<CR>
+"use ctrl-s to save in normal mode
 nnoremap <C-q> :wq<CR>
+"use ctrl-q to save and quit
 nnoremap <C-t> :NERDTreeToggle<CR>
+"use ctrl-t to toggle NERDTree
 
 colorscheme badwolf
